@@ -1,0 +1,38 @@
+{% load thumbnail %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ekko-lightbox-nav-overlay a {
+            color: goldenrod;
+        }
+        .gallery-title {
+            text-align: center;
+            font-weight: 500;
+            border-bottom: 1px dotted orange;
+            margin-top: 1em;
+        }
+        .images-class {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="images-class">
+            {% for image in images %}
+            <div>
+                <a href="{% url 'details' image.pk %}">
+                    <img src="{{ image.img|thumbnail_url:'default' }}" alt="{{ image.img }}">
+                </a>
+            </div>
+            {% endfor %}
+    </div>
+</body>
+</html>
